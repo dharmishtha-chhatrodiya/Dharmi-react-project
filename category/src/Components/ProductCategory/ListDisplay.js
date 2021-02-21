@@ -1,69 +1,60 @@
 import React from "react";
-import styled from "styled-components";
+import { withStyles } from '@material-ui/core/styles';
 import { editItem, deleteItem } from "../../Actions";
 import { useSelector, useDispatch } from "react-redux";
 
-const Label = styled.label`
-  display: flex;
-  line-height: 28px;
-  align-items: center;
-  cursor: pointer;
-  margin: 20px;
-  border-radius: 4px;
-  padding: 12px 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  background-color: white;
-  transition: all 300ms;
 
-  &.complete {
-    box-shadow: none;
+const styles = theme => ({
+  root: {
+    width: '100%',
+  },
+  mainSection:{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding:" 0 20px",
+  },
+  categoryName: {
+    fontSize: "16px",
+    color: "#222222",
+    textTransform: "capitalize",
+    display: "flex",
+    lineHeight: "28px",
+    alignItems: "center",
+    cursor: "pointer",
+    margin: "20px",
+    borderRadius: "4px",
+    padding: "12px 24px",
+    boxShadow: "0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24)",
+    backgroundColor: "white",
+  },
+  deleteButton: {
+    backgroundColor: "#e74c3c",
+    color: "#ecf0f1",
+    borderRadius: "5px",
+    boxShadow:" 0 1px 4px rgba(0, 0, 0, 0.6)",
+    padding: "12px 24px",
+    border: "none",
+    borderRadius: "2px",
   }
+});
 
-  & input {
-    margin-right: 24px;
-    pointer-events: none;
 
-    &:checked {
-      & ~ span {
-        text-decoration: line-through;
-      }
-    }
-  }
-
-  & span {
-    flex-grow: 1;
-    text-align: left;
-  }
-`;
-
-const Delete = styled.button`
-  cursor: pointer;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 2px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-  background-color: #e74c3c;
-  color: #ecf0f1;
-
-  &:hover,
-  &:focus {
-    background-color: #c0392b;
-  }
-`;
-
-export default function ListOutput() {
+function ListOutput(props) {
+  const { classes } = props;
   const list = useSelector(state => state.list);
   const dispatch = useDispatch();
 
   const listKeys = Object.keys(list);
   return (
     <React.Fragment>
-      {listKeys.map(key => (
-        <Label
-          className={list[key].complete && "complete"}
-          key={`listitem_${key}`}
-        >
-          <input
+      <div className={classes.root}>
+        {listKeys.map(key => (
+          <div className={classes.mainSection}
+            // className={list[key].complete && "complete"}
+            key={`listitem_${key}`}
+          >
+            {/* <input
             checked={list[key].complete}
             onChange={e => {
               dispatch(
@@ -74,17 +65,21 @@ export default function ListOutput() {
               );
             }}
             type="checkbox"
-          />
-          <span>{list[key].label}</span>
-          <Delete
-            onClick={() => {
-              dispatch(deleteItem(key));
-            }}
-          >
-            <span>Delete</span>
-          </Delete>
-        </Label>
-      ))}
+          /> */}
+           
+            <span  className={classes.categoryName} >{list[key].label}</span>
+            <button className={classes.deleteButton}
+              onClick={() => {
+                dispatch(deleteItem(key));
+              }}
+            >
+              <span>Delete</span>
+            </button>
+          </div>
+        ))}
+      </div>
+
     </React.Fragment>
   );
 }
+export default withStyles(styles)(ListOutput)
