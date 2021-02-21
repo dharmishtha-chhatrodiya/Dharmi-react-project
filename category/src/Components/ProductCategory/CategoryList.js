@@ -1,11 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import Typography from '@material-ui/core/Typography';
-import AddIcon from '@material-ui/icons/Add';
+import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, Typography, Grid } from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 const styles = theme => ({
     root: {
@@ -22,37 +19,38 @@ const styles = theme => ({
     },
 });
 
-class CategoryList extends React.Component {
-    state = {
-        expanded: null,
+function CategoryList(props) {
+    const { classes } = props;
+    const [expanded, setExpanded] = React.useState(false);
+
+    const handleChange = (panel) => (event, isExpanded) => {
+        setExpanded(isExpanded ? panel : false);
     };
 
-    handleChange = panel => (event, expanded) => {
-        this.setState({
-            expanded: expanded ? panel : false,
-        });
-    };
+    return (
+        <div className={classes.root}>
+            <Grid container spacing={2}>
+                <Grid item xs={11} sm={11}>
+                {/* {allSlot &&
+              allSlot.map((element, i) => {
+                return ( */}
+                    <ExpansionPanel
+                        // expanded={expanded === i}
+                        expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+                        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                            <Typography className={classes.heading}>Category (0)</Typography>
+                        </ExpansionPanelSummary>
+                        <ExpansionPanelDetails>
+                            <Typography >sub category (2)</Typography>
+                        </ExpansionPanelDetails>
+                    </ExpansionPanel>
+                {/* )
+              })} */}
+                </Grid>
+            </Grid>
+        </div>
+    );
 
-    render() {
-        const { classes } = this.props;
-        const { expanded } = this.state;
-
-        return (
-            <div className={classes.root}>
-                <ExpansionPanel expanded={expanded === 'panel1'} onChange={this.handleChange('panel1')}>
-                    <ExpansionPanelSummary expandIcon={<AddIcon />}>
-                    <Typography className={classes.heading}>Category (0)</Typography>
-                    </ExpansionPanelSummary>
-                    <ExpansionPanelDetails>
-                    <Typography >sub category (2)</Typography>
-                    </ExpansionPanelDetails>
-                </ExpansionPanel>
-
-
-
-            </div>
-        );
-    }
 }
 
 CategoryList.propTypes = {
