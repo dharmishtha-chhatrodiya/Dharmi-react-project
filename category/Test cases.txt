@@ -1,0 +1,12 @@
+Test case 
+1) Create a dynamic category.
+2) Create sub-category under category list.
+3) View all root categories.
+4) Create root categories.
+5) View subcategories on clicking of parent category.
+6) View all root categories & sub categories.
+7) View action menu on each category.
+8) Update action menu on each sub category.
+9) Edit a category.
+10) Deletet a category.
+11) Click "^" to close the expanded view

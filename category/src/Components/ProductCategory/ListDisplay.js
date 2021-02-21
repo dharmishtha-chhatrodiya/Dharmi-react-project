@@ -54,18 +54,7 @@ function ListOutput(props) {
             // className={list[key].complete && "complete"}
             key={`listitem_${key}`}
           >
-            {/* <input
-            checked={list[key].complete}
-            onChange={e => {
-              dispatch(
-                editItem({
-                  key,
-                  complete: e.target.checked
-                })
-              );
-            }}
-            type="checkbox"
-          /> */}
+        
            
             <span  className={classes.categoryName} >{list[key].label}</span>
             <button className={classes.deleteButton}

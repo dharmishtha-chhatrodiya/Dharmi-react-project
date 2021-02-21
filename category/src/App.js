@@ -6,10 +6,15 @@ import ListInput from "./Components/ProductCategory/listAdder";
 import ListOutput from "./Components/ProductCategory/ListDisplay";
 import { addCategory } from "./Actions/categoryAction";
 import { connect } from "react-redux";
-
+import { Container } from '@material-ui/core';
 function App(props) {
   console.log("props", props);
   const [category, setcategory] = useState();
+// import logo from './logo.svg';
+// import CategoryList from './Components/ProductCategory/CategoryList';
+
+// import ListInput from "./Components/ProductCategory/listAdder"
+// import ListOutput from './Components/ProductCategory/ListDisplay';
 
   return (
     <div className="App">
@@ -27,6 +32,11 @@ function App(props) {
       >
         Click Me!
       </button>
+      <Container maxWidth="lg">
+      <ListInput />
+      <ListOutput />
+      <CategoryList/>
+      </Container>
     </div>
   );
 }
