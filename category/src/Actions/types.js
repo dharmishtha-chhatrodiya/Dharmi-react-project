@@ -1,2 +1,3 @@
-export const ADD_CATEGORY = "ADD_CATEGORY";
-export const ADD_SUBCATEGORY = "ADD_SUBCATEGORY";
+// LIKE POST
+export const ADD_DATA = 'ADD_DATA'
+export const GET_DATA = 'GET_DATA'

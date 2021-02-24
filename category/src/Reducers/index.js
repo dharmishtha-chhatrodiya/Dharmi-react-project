@@ -1,10 +1,6 @@
-import listReducer from "./list";
 import { combineReducers } from "redux";
-import categoryReducer from "./categoryReducer";
+import DataReducer from "./DataReducers";
 
-const rootReducers = combineReducers({
-  list: listReducer,
-  category: categoryReducer,
+export default combineReducers({
+    data: DataReducer,
 });
-
-export default rootReducers;
